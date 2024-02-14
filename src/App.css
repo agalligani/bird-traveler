@@ -1,38 +1,113 @@
-.App {
+body {
+  margin: 0;
+  font-family: 'Comfortaa', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("../public/images/mistybg.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: #d19a87;
+  font-size: 25px;
+  line-height: 1.5;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* flex styling described here: https://www.youtube.com/watch?v=-pcMxrugSbs */
+
+h1, h2, h3, h4, h5 {
+  padding: 5px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  padding: 30px 30px 300px;
+}
+
+.columns {
+  margin: 0 -15px;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.col {
+  margin: 0 15px 30px;
+  padding: 20px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.7);
+}
+
+.col-30 {
+  width: calc(33.33% - 30px)
+}
+
+.col-50 {
+  width: calc(50% - 30px)
+}
+
+.col-100 {
+  width: calc(100% - 30px)
+}
+
+.col-middle-box {
+  margin: 0px 120px 120px;
+  padding: 20px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.7);
+  width: calc(100% - 240px)
+}
+
+@media screen and (max-width: 800px) {
+  .col-50 {
+    width: 100%;
+  }
+
+  .col-middle-box {
+    margin: 0px 15px 30px;
+    width: 100%;
+  }
+}
+
+.centered {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* sidebar */
+
+.sidebar {
+  height: auto;
+  width: 130px;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  /* overflow-x: hidden; */
+  transition: 0.5s;
+  padding-top: 10px;
+  line-height: 18px;
+  margin-left: -28px;
+  overflow-y: scroll;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sidebar a {
+  padding: 8px 8px 8px 8px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.sidebar a:hover {
+  color: #f1f1f1;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+

@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import BirdQuery from './features/BirdQuery/BirdQuery'
+import SideBar from './components/SideBar'
+import SpeciesGroupingMenu from './features/SpeciesGrouping/SpeciesGroupingMenu'
+// import Location from './features/Location/Location'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div className="wrapper">
+      <SpeciesGroupingMenu />
+      <SideBar />
+      <div className="columns">
+        <BirdQuery />
+        <footer className="col col-100 centered">
+          <h5>Copyright 2014 - All rights reserved</h5>
+          <div>Background photo by cetteup on Unsplash</div>
+        </footer>
+      </div>
     </div>
-  );
+    </>
+  )
 }
 
 export default App;
