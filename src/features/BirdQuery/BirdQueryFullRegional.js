@@ -118,6 +118,9 @@ const BirdQueryFullRegional = () => {
                         return fgroups.map(
                             (n,i) => 
                             <>
+                            <div id={n.groupOrder}>
+                                {n.groupName}
+                            </div>
                             <ul class="image-gallery">
                                 {n.speciesList.map( 
                                     (species,k) =>
