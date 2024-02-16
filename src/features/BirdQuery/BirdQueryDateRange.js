@@ -60,7 +60,6 @@ const BirdQuery = () => {
                             .then(res => res.data)
                             .then( data => {
                                 dispatch(upDateMasterHistoricList(data))
-                                // dispatch(setQueryDate(data[0].obsDate))
                                 })
                             .catch(function (error) {
                             console.log(error)

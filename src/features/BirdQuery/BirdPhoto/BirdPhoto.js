@@ -39,10 +39,13 @@ const BirdPhoto = (props) => {
 
   if (props.speciesName && photoData != undefined) {
     return (
-      <div className="bird-thumbnail" >
-        {/* <h4>{photoData.title}</h4> */}
-        <img alt={photoData.title} src = {`https://live.staticflickr.com/${photoData.server}/${photoData.id}_${photoData.secret}.jpg`}/>
-      </div>    
+      <li>
+        <img alt={photoData.title} src = {`https://live.staticflickr.com/${photoData.server}/${photoData.id}_${photoData.secret}_b.jpg`}/>
+        {/* <div class="overlay"><span>{props.speciesName}</span></div> */}
+        <div class="overlay"><span>{props.speciesName}</span></div>
+        {/* <div class="overlay"><span>{props.speciesName}</span></div> */}
+    </li>
+
     )
   }
 

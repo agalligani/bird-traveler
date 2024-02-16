@@ -11,11 +11,6 @@ import { useEffect } from "react"
 const SpeciesGroupingMenu = () => {
 
     const dispatch = useDispatch()
-    const {
-        speciesGrouping,
-    } = useSelector( (state) => state.speciesGrouping)
-
-
     const loadSpeciesGroupings = () => {
         let axiosConfig = config
         axiosConfig.url = `https://api.ebird.org/v2/ref/sppgroup/merlin\n`

@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import BirdPhoto from './BirdPhoto/BirdPhoto'
 import axios from 'axios'
 import config from "../../config"
+import ImageGallery from '../../components/ImageGallery'
+
 
 const BirdQueryFullRegional = () => {
     const dispatch = useDispatch()
@@ -109,37 +111,31 @@ const BirdQueryFullRegional = () => {
                 <h4>Location</h4>
                 <div>{locId}</div>
             </div>
-
+            <div className="col-middle-box">
             { groupedSpecies.length ? 
                 groupedSpecies.map(
                     fgroups => { 
                         return fgroups.map(
                             (n,i) => 
                             <>
-                            <div className="col-middle-box" key={i} id={n.groupOrder}>
-                               {n.groupName}-{n.speciesList.length}
-                            </div>
-                            {n.speciesList.map( 
-                                (species,k) => 
-                                <div className="col-middle-box" key={`${n.groupOrder}-${k}`}>
-                                    {k}-{species.comName}
-                                    <BirdPhoto 
-                                    // speciesCode=
-                                    speciesName={species.comName}
-                                    />
-                                </div>
-                            )}
+                            <ul class="image-gallery">
+                                {n.speciesList.map( 
+                                    (species,k) =>
+                                    <BirdPhoto speciesName={species.comName}/>
+                                )}
+                            </ul>
                             </>
                         )
                     }
                     )
                     :  
-                    <div className="col-middle-box">
+                    <div>
                         {queryButton}
                         {populateDetailsButton}
                         {orderSpeciesButton}
                     </div> 
                 }
+                </div>
         </>
     )
 }
