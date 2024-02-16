@@ -109,5 +109,72 @@ h1, h2, h3, h4, h5 {
   color: #f1f1f1;
 }
 
+/* nav pills */
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+ul {
+  margin-top: 0;
+  box-sizing: border-box;
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  position: sticky;
+  display: block;
+}
+
+.nav-link {
+  text-transform: uppercase;
+  font-size: .7rem;
+  font-weight: 900;
+  line-height: 1em;
+  letter-spacing: .1px;
+  color: #fff;
+  padding: 4px 6px 3px;
+  margin-right: 9px;
+  margin-bottom: 0.25rem;
+  /* background: #e44a18; */
+  background: #2255AA;
+  float: inline-start;
+}
+
+.nav-pills {
+  display: inline;
+}
+
+.nav-pills .nav-link, .nav-pills .menu-item>a {
+  padding: 0.5em 1em;
+  border-radius: 0.1rem;
+}
+
+a {
+  touch-action: manipulation;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.nav-link {
+  /* display: block; */
+}
+
+.nav-pills:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 

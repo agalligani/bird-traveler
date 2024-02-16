@@ -1,9 +1,8 @@
 import DatePicker  from 'react-datepicker'
-import {useState, useEffect} from "react"
+import {useState} from "react"
 import { upDateMasterHistoricList,
         normalizeHistoricList,
         setSpeciesDescriptions,
-        setQueryDate
         } from './birdQuerySlice'
 import "react-datepicker/dist/react-datepicker.css"
 import { useSelector, useDispatch } from 'react-redux'
@@ -16,8 +15,7 @@ const BirdQuery = () => {
     const dispatch = useDispatch()
     const {
         masterHistoricList,
-        normalizedHistoricList,
-        queryDate
+        normalizedHistoricList    
     } = useSelector( (state) => state.birdQuery)
 
     const {
@@ -30,8 +28,6 @@ const BirdQuery = () => {
 
     const [startDate, setStartDate] = useState( new Date())
     const [endDate, setEndDate] = useState( new Date())
-
-    // useEffect(() => {dedupeMasterList()}, [masterHistoricList])
 
     let requestConfig = config.axiosConfig
 
@@ -69,6 +65,7 @@ const BirdQuery = () => {
                             .catch(function (error) {
                             console.log(error)
                             })
+                        return null
                     }
                 )
             )
@@ -93,9 +90,7 @@ const BirdQuery = () => {
                 return sc
             }
         )
-        // console.log(`species codes: ${JSON.stringify(allSpeciesOccurrences[0])}`)
         const uniqSpecies = uniqByKeepLast(allSpeciesOccurrences, n => n.speciesCode )
-        // console.log(`unique species: ${JSON.stringify(uniqSpecies)}`)
         dispatch(normalizeHistoricList(uniqSpecies))
     }
 

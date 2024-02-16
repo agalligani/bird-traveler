@@ -4,8 +4,10 @@ const initialState = {
     // locId: 'PE-MDD',
     // locId: 'L3971768',
     masterHistoricList: Array(0),
+    regionalSpeciesList: Array(0),
     normalizedHistoricList: Array(0),
     speciesDescriptions: Array(0),
+    groupedSpecies: Array(0),
     queryDate: ""
 }
 export const birdQuerySlice = createSlice({
@@ -29,6 +31,12 @@ export const birdQuerySlice = createSlice({
         },
         setQueryDate: ( state, action ) => {
             state.queryDate = action.payload
+        },
+        updateRegionalSpeciesList: ( state, action ) => {
+            state.regionalSpeciesList = action.payload
+        },
+        updateGroupedSpecies: (state, action) => {
+            state.groupedSpecies.push(action.payload)
         }
     }
 })
@@ -36,9 +44,12 @@ export const birdQuerySlice = createSlice({
 export const { 
     updateLocid, 
     upDateMasterHistoricList,
+    updateRegionalSpeciesList,
+    updateGroupedSpecies,
     normalizeHistoricList,
     setSpeciesDescriptions,
-    setQueryDate
+    setQueryDate,
+    groupedSpecies
 } = birdQuerySlice.actions
 
 export default birdQuerySlice.reducer

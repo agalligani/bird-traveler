@@ -1,7 +1,7 @@
 //Species grouping menu loads the master grouping list and then
 //present a filtered version for selection based on the appropriate
 //species in the master species list
-import { updateSpeciesGrouping, setFilteredSpeciesGrouping } from "./speciesGroupingSlice" 
+import { updateSpeciesGrouping, } from "./speciesGroupingSlice" 
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import config from "../../config"

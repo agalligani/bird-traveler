@@ -1,8 +1,6 @@
-// import { useSelector } from "react-redux"
 import React, { useState, useEffect } from "react";
 import { createFlickr } from "flickr-sdk"
 import config from "../../../config.json"
-// const { flickr } = createFlickr("c0df50748c11abc7c7ef61b7d9a5aab3")
 
 const { flickr } = createFlickr(config.flickrConfig.key)
 const requestPhotoFromState = ( speciesCode ) => {
@@ -13,15 +11,12 @@ const requestPhotoFromState = ( speciesCode ) => {
 
 const BirdPhoto = (props) => {
   const [photoData, setPhotoData] = useState({})
-  // const [isLoading, setIsLoading] = useState(true)
-
   useEffect(() => {
     if (props.speciesCode) {
       requestPhotoFromState(props.speciesCode)
     } else {
       requestPhotoFromFlickr(props.speciesName)
     }
-
   },[]);
 
   const requestPhotoFromFlickr = async (speciesName) => {
@@ -42,21 +37,10 @@ const BirdPhoto = (props) => {
       }
   }
 
-
-    if (props.speciesCode) {
-    // requestPhotoFromState(props.speciesCode)
-    return <img src='http://placekitten.com/200/300' alt={props.speciesCode}/>
-  }
-
-  if (props.speciesCode) {
-    requestPhotoFromState(props.speciesCode)
-    return <img src='http://placekitten.com/200/300' alt={props.speciesCode}/>
-  }
-
-  if (props.speciesName) {
+  if (props.speciesName && photoData != undefined) {
     return (
       <div className="bird-thumbnail" >
-        <h4>{photoData.title}</h4>
+        {/* <h4>{photoData.title}</h4> */}
         <img alt={photoData.title} src = {`https://live.staticflickr.com/${photoData.server}/${photoData.id}_${photoData.secret}.jpg`}/>
       </div>    
     )
