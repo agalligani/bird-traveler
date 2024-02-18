@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    // locId: "L3971768"
-    locId: "PE-MDD"
+    locId: "L3971768"
+    // locId: "PE-MDD"
+    // Sherri's place in CR
+    // locId: "L3751192"
 }
 
 export const locationSlice = createSlice({

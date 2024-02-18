@@ -2,13 +2,13 @@ import { useSelector } from "react-redux"
 
 const NavPills = () => {
 
+
     const {
         groupedSpecies
     } = useSelector( (state) => state.birdQuery)
 
-
     return (
-    <ul className="nav nav-pills">
+    <ul className="nav nav-pills col col-100 centered">
     { groupedSpecies.length ? 
         groupedSpecies.map(
             sublist => { 

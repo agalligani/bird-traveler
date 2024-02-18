@@ -10,7 +10,6 @@ import axios from 'axios'
 import config from "../../config"
 import ImageGallery from '../../components/ImageGallery'
 
-
 const BirdQueryFullRegional = () => {
     const dispatch = useDispatch()
     const {
@@ -24,8 +23,7 @@ const BirdQueryFullRegional = () => {
     } = useSelector( (state) => state.location)
 
     const {
-        speciesGrouping,
-        filteredSpeciesGrouping
+        speciesGrouping
     } = useSelector( (state) => state.speciesGrouping)
 
     let requestConfig = config.axiosConfig
@@ -55,8 +53,6 @@ const BirdQueryFullRegional = () => {
                 }
             )
         }
-
-
 
     /*** GROUP SPECIES ****/
     const orderSpeciesByGrouping = () => {
@@ -89,8 +85,6 @@ const BirdQueryFullRegional = () => {
         dispatch(updateGroupedSpecies(finalFilteredGroups))
     }
 
-    
-
     const queryButton = {regionalSpeciesList}.length || 
         <button onClick={() => speciesListForARegion()}>
             Run Query
@@ -118,13 +112,15 @@ const BirdQueryFullRegional = () => {
                         return fgroups.map(
                             (n,i) => 
                             <>
-                            <div id={n.groupOrder}>
+                            <div className="group-heading" id={n.groupOrder}>
                                 {n.groupName}
                             </div>
                             <ul class="image-gallery">
                                 {n.speciesList.map( 
                                     (species,k) =>
-                                    <BirdPhoto speciesName={species.comName}/>
+                                    <a className="image-link" href={`https://ebird.org/species/${species.speciesCode}\n`} target="_blank">
+                                        <BirdPhoto speciesName={species.comName}/>
+                                    </a>
                                 )}
                             </ul>
                             </>
