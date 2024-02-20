@@ -8,7 +8,7 @@ const NavPills = () => {
     } = useSelector( (state) => state.birdQuery)
 
     return (
-    <ul className="nav nav-pills col col-100 centered">
+    <ul className="nav nav-pills">
     { groupedSpecies.length ? 
         groupedSpecies.map(
             sublist => { 

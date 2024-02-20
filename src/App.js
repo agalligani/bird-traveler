@@ -1,16 +1,33 @@
 import './App.css'
-import SpeciesGroupingMenu from './features/SpeciesGrouping/SpeciesGroupingMenu'
+import { updateSpeciesGrouping, } from "./features/SpeciesGrouping/speciesGroupingSlice" 
+import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
+import config from "./config"
+import { useEffect } from "react"
 import BirdQueryFullRegional from './features/BirdQuery/BirdQueryFullRegional'
 import NavPills from './components/NavPills'
+import Location from './features/Location/Location'
 
 function App() {
+  const dispatch = useDispatch()
+  const loadSpeciesGroupings = () => {
+      let axiosConfig = config
+      axiosConfig.url = `https://api.ebird.org/v2/ref/sppgroup/merlin\n`
+      axios(axiosConfig)
+          .then(res => res.data.length ? 
+              dispatch(updateSpeciesGrouping(res.data)) 
+              : "" )
+          .catch( err => err.message)
+  }
+
+  useEffect(() => loadSpeciesGroupings() ,[])
   return (
     <>
-    
+    <Location />
     <button onClick={() => window.scrollTo({ top: 10, behavior: "smooth" })} id="topBtn" title="Go to top">Top</button>
     <div className="wrapper">
       <NavPills />
-      <SpeciesGroupingMenu />
+      {/* <SpeciesGroupingMenu /> */}
       <div className="columns">
         <BirdQueryFullRegional />
         <footer className="col col-100 centered">

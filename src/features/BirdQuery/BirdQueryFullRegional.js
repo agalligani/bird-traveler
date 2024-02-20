@@ -99,12 +99,9 @@ const BirdQueryFullRegional = () => {
         <button onClick={() => orderSpeciesByGrouping()}>
             Order Species
         </button>
+        
   return (
         <>
-            <div className="col col-30">
-                <h4>Location</h4>
-                <div>{locId}</div>
-            </div>
             <div className="col-middle-box">
             { groupedSpecies.length ? 
                 groupedSpecies.map(

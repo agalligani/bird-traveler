@@ -128,7 +128,11 @@ ul {
   flex-wrap: wrap;
   justify-content: left;
   gap: 30px;
-  list-style: none;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
 }
 
 .image-gallery > li {
@@ -192,11 +196,10 @@ a.image-link {
   list-style: none;
 }
 
-ul {
+ul.nav {
   margin-top: 0;
   box-sizing: border-box;
   display: block;
-  list-style-type: disc;
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;
@@ -242,9 +245,9 @@ a {
   cursor: pointer;
 }
 
-a.nav-link {
-  /* display: block; */
-}
+/* a.nav-link {
+  display: block; 
+} */
 
 .nav-pills:after {
   content: "";

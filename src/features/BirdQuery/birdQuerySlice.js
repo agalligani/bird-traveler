@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    // locId: 'PE-MDD',
-    // locId: 'L3971768',
     masterHistoricList: Array(0),
     regionalSpeciesList: Array(0),
     normalizedHistoricList: Array(0),
