@@ -1,31 +1,73 @@
-import { useSelector } from "react-redux";
-import "./styles.css";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+import { useSelector, useDispatch } from "react-redux"
+import { useState, useEffect } from "react"
+import "./styles.css"
+import "./Location.css"
+// import Popup from 'reactjs-popup'
+import 'reactjs-popup/dist/index.css'
+import { updateLocation, updateSubnational1List } from "./locationSlice"
+import axios from "axios"
+import config from "../../config"
 
 const LocationSelector = () => {
 
+  const [locationSelected, setLocationSelected ] = useState(null)
+  const dispatch = useDispatch()
+
     const {
         locId,
-        locFavorites
+        locFavorites,
+        countryId,
+        subnational1List
     } = useSelector( 
         state => state.location
     )
 
+    useEffect(
+      () => {
+      let requestConfig = config.axiosConfig
+      requestConfig.url = `https://api.ebird.org/v2/ref/region/list/subnational1/
+      ${countryId}`
+      axios(requestConfig)
+      .then(res => res.data)
+      .then( data => {
+          dispatch(updateSubnational1List(data))
+          })
+      .catch(function (error) {
+      console.log(error)
+      })
+    }
+    , [countryId])
+
+    const setLocationSelect = (e) => {
+      setLocationSelected(e.target.value)
+    }
+
+    const saveLocationSelect = (e) => {
+      dispatch(updateLocation(locationSelected))
+      setLocationSelected(null)
+    }
+
   return (
-    <Popup trigger={<button>Select Location(s):</button>} modal>
-    {close => (
-      <div>
-        <select>
-          <option value="L5840833">Tambopata Ecolodge</option>
-          <option value="L3971768">Manu National Park</option>
-          <option value="L602498">Puerto Maldonado</option>
+      <form id="locForm">
+        <select id="locSelect" className="locations_select" onChange={(e) => setLocationSelect(e)}>
+          {
+            subnational1List ? 
+              subnational1List.map(
+                (l,i) => {
+                  return <option value={l.code}>{l.name}</option>
+              }
+              )
+              :
+              <></>
+            
+          }
         </select>
-        <a className="close" onClick={close}>
-          &times;
-        </a>
-      </div>
-    )}
-  </Popup>  )
+        {locationSelected ? ( 
+          <button className="close" onClick={() => saveLocationSelect()}>
+            Save Location
+          </button>
+          ) 
+        : ( <></>)}
+      </form>)
 }
 export default LocationSelector

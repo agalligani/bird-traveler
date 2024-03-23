@@ -1,31 +1,48 @@
-import { useSelector } from "react-redux";
-import "./styles.css";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+import { useSelector, useDispatch } from "react-redux"
+import { useState, useEffect } from "react"
+import { updateCountry, updateSubnational1List } from "./locationSlice"
+import "./styles.css"
+// import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css'
+import axios from "axios"
+import config from "../../config"
 
-
-const LocationSelector = () => {
-
+const CountrySelector = () => {
+  const [countryName, setCountryName] = useState("")
     const {
-        locId,
-        locFavorites
-    } = useSelector( 
+        regionId,
+        countryId,
+        regionalCountryList
+          } = useSelector( 
         state => state.location
     )
 
+    let requestConfig = config.axiosConfig
+    requestConfig.url = `https://api.ebird.org/v2/ref/region/list/country/${regionId}`
+
+    const dispatch = useDispatch()
+    const setCountryValue = (e) => {
+      dispatch(updateCountry(e.target.value))
+      const iterator = regionalCountryList.values();
+      for (const value of iterator) {
+        if (value.code === e.target.value) {
+          setCountryName(value.name);
+        }
+      }
+    }
+
   return (
-    <Popup trigger={<button>Select Location(s):</button>} modal>
-    {close => (
       <div>
-        <select>
-          <option value="PE">Peru</option>
-          <option value="US">United States</option>
+        <h4>{countryId}</h4>
+        <select className="location_select" multiple>
+        {regionalCountryList.map(
+          (c,i) => <option key={i} value={c.code} onClick={
+            (e) => setCountryValue(e)
+          }>{c.name}</option>
+        )}
         </select>
-        <a className="close" onClick={close}>
-          &times;
-        </a>
       </div>
-    )}
-  </Popup>  )
-}
-export default LocationSelector
+    )
+  }
+
+export default CountrySelector
