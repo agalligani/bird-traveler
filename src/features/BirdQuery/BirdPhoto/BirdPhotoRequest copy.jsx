@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import { Image } from "react-bootstrap"
 import { createFlickr } from "flickr-sdk"
 
@@ -6,7 +6,6 @@ const BirdPhoto = ({comName}) => {
 
   const [photoData, setPhotoData] = useState([])
   const [isLoading, setLoading] = useState(true);
-
   const { flickr } = createFlickr("c0df50748c11abc7c7ef61b7d9a5aab3")
   
   useEffect(() => {

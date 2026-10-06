@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import BirdPhoto from './BirdPhoto/BirdPhoto'
 import axios from 'axios'
 import config from "../../config"
-import ImageGallery from '../../components/ImageGallery'
+// import ImageGallery from '../../components/ImageGallery'
 
 const BirdQueryFullRegional = () => {
     const dispatch = useDispatch()
@@ -109,13 +109,13 @@ const BirdQueryFullRegional = () => {
                         return fgroups.map(
                             (n,i) => 
                             <>
-                            <div className="group-heading" id={n.groupOrder}>
+                            <div key={"group-heading" +i} className="group-heading" id={n.groupOrder}>
                                 {n.groupName}
                             </div>
-                            <ul class="image-gallery">
+                            <ul key={"image-gallery"+i} class="image-gallery">
                                 {n.speciesList.map( 
                                     (species,k) =>
-                                    <a className="image-link" href={`https://ebird.org/species/${species.speciesCode}\n`} target="_blank">
+                                    <a key={"image-link"+k} className="image-link" href={`https://ebird.org/species/${species.speciesCode}\n`} target="_blank">
                                         <BirdPhoto speciesName={species.comName}/>
                                     </a>
                                 )}
