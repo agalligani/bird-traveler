@@ -14,10 +14,10 @@ const NavPills = () => {
             sublist => { 
                 return sublist.map(
                     (n,i) => 
-                    <li className="nav-item">
-                    <a className="nav-link" key={i} href={"#"+n.groupOrder}>
+                    <li key={"li"+i} className="nav-item">
+                        <a className="nav-link" key={i} href={"#"+n.groupOrder}>
                         {n.groupName}
-                    </a>
+                        </a>
                     </li>
                 )
             }

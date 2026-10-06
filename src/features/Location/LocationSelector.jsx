@@ -54,7 +54,7 @@ const LocationSelector = () => {
             subnational1List ? 
               subnational1List.map(
                 (l,i) => {
-                  return <option value={l.code}>{l.name}</option>
+                  return <option key={i} value={l.code}>{l.name}</option>
               }
               )
               :
