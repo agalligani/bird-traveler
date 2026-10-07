@@ -2,9 +2,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useState, useEffect } from "react"
 import { updateCountry, updateSubnational1List } from "./locationSlice"
 import "./styles.css"
-// import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css'
-import axios from "axios"
 import config from "../../config"
 
 const CountrySelector = () => {

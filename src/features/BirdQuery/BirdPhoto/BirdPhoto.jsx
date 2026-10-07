@@ -33,17 +33,15 @@ const BirdPhoto = (props) => {
       setPhotoData(res.photos.photo[0])
 
       } catch (error) {
-          console.error(error) // from creation or business logic
+          console.error(error)
       }
   }
 
   if (props.speciesName && photoData != undefined) {
     return (
-      <li>
+      <li key={"bird-photo-li-"+props.speciesName} className="image-item">
         <img alt={photoData.title} src = {`https://live.staticflickr.com/${photoData.server}/${photoData.id}_${photoData.secret}_b.jpg`}/>
-        {/* <div class="overlay"><span>{props.speciesName}</span></div> */}
         <div className="overlay"><span>{props.speciesName}</span></div>
-        {/* <div class="overlay"><span>{props.speciesName}</span></div> */}
     </li>
 
     )

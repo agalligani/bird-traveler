@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux"
 import { useState, useEffect } from "react"
 import "./styles.css"
 import "./Location.css"
-// import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css'
 import { updateLocation, updateSubnational1List } from "./locationSlice"
 import axios from "axios"

@@ -19,7 +19,8 @@ const RegionSelector = () => {
     {name: 'Europe', id: "eu"},
     {name: 'Central America', id: "ca"},
     {name: 'North America', id: "na"},
-    {name: 'South America', id: "sa"}
+    {name: 'South America', id: "sa"},
+    {name: 'Antarctica', id: "aq"}
   ]
 
     const {

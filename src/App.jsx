@@ -12,7 +12,7 @@ function App() {
   const dispatch = useDispatch()
   const loadSpeciesGroupings = () => {
       let axiosConfig = config
-      axiosConfig.url = `https://api.ebird.org/v2/ref/sppgroup/merlin\n`
+      axiosConfig.url = `https://api.ebird.org/v2/ref/sppgroup/ebird\n`
       axios(axiosConfig)
           .then(res => res.data.length ? 
               dispatch(updateSpeciesGrouping(res.data)) 
@@ -27,12 +27,10 @@ function App() {
     <button onClick={() => window.scrollTo({ top: 10, behavior: "smooth" })} id="topBtn" title="Go to top">Top</button>
     <div className="wrapper">
       <NavPills />
-      {/* <SpeciesGroupingMenu /> */}
       <div className="columns">
         <BirdQueryFullRegional />
         <footer className="col col-100 centered">
-          <h5>Copyright 2014 - All rights reserved</h5>
-          <div>Background photo by cetteup on Unsplash</div>
+          <h5>Copyright 2026 - All rights reserved</h5>
         </footer>
       </div>
     </div>
