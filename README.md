@@ -4,4 +4,4 @@ This project is set up to provide React generated bird guides using the ebird AP
 
 The original was constructed in 2024 using Create React App and is now using Vite.
 
-An alternate name for this app is "ebird-date"
+An alternate name for this app is "ebird-data"
