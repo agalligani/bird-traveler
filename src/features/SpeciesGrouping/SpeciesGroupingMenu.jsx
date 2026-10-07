@@ -5,7 +5,7 @@ import { updateSpeciesGrouping, } from "./speciesGroupingSlice"
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import config from "../../config"
-import SpeciesGrouping from "../SpeciesGrouping/SpeciesGrouping"
+import SpeciesGrouping from "./SpeciesGrouping"
 import { useEffect } from "react"
 
 const SpeciesGroupingMenu = () => {

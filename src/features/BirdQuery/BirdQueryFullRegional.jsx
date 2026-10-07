@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import BirdPhoto from './BirdPhoto/BirdPhoto'
 import axios from 'axios'
 import config from "../../config"
+import {chunkArray} from '../../utils'
 // import ImageGallery from '../../components/ImageGallery'
 
 const BirdQueryFullRegional = () => {
@@ -41,12 +42,18 @@ const BirdQueryFullRegional = () => {
     const populateSpeciesDetails = (speciesList) => {
             console.log("processSpeciesTaxonomy")
             console.log(speciesList)
-            speciesList.regionalSpeciesList.forEach(
-                (species, i) => {
+            let chunkedSpeciesList = chunkArray(speciesList.regionalSpeciesList, 30)
+            console.log(chunkedSpeciesList)
+            chunkedSpeciesList.forEach(
+                (chunk, i) => {
                     const taxonConfig = config.axiosConfig
-                    taxonConfig.url = `https://api.ebird.org/v2/ref/taxonomy/ebird?species=${species}&fmt=json`
+                    taxonConfig.url = `https://api.ebird.org/v2/ref/taxonomy/ebird?species=${chunk.join(",")}&fmt=json`
                     axios(taxonConfig).then( (res) => {
-                        dispatch(setSpeciesDescriptions(res.data[0]))
+                        res.data.forEach(
+                            (species, j) => {
+                                dispatch(setSpeciesDescriptions(species))
+                            }
+                        )
                     }).catch( (err) => {
                         console.log(err.message)
                     })
@@ -75,13 +82,9 @@ const BirdQueryFullRegional = () => {
                         "speciesList" : speciesList
                     }
             )})
-            // console.log(filteredGroups)
             finalFilteredGroups = filteredGroups.filter(
                 group => group.speciesList.length > 0
             )
-            // console.log(speciesDescriptions)
-
-        // dispatch(setFilteredSpeciesGrouping(finalFilteredGroups))
         dispatch(updateGroupedSpecies(finalFilteredGroups))
     }
 
@@ -109,14 +112,14 @@ const BirdQueryFullRegional = () => {
                         return fgroups.map(
                             (n,i) => 
                             <>
-                            <div key={"group-heading" +i} className="group-heading" id={n.groupOrder}>
+                            <div key={"group-heading"+i} className="group-heading" id={n.groupOrder}>
                                 {n.groupName}
                             </div>
-                            <ul key={"image-gallery"+i} class="image-gallery">
+                            <ul key={"image-gallery"+i} className="image-gallery">
                                 {n.speciesList.map( 
                                     (species,k) =>
-                                    <a key={"image-link"+k} className="image-link" href={`https://ebird.org/species/${species.speciesCode}\n`} target="_blank">
-                                        <BirdPhoto speciesName={species.comName}/>
+                                    <a key={"image-link-"+i+"-"+k} className="image-link" href={`https://ebird.org/species/${species.speciesCode}\n`} target="_blank">
+                                        <BirdPhoto key={"bird-photo-"+i+"-"+k} speciesName={species.comName}/>
                                     </a>
                                 )}
                             </ul>
@@ -125,7 +128,7 @@ const BirdQueryFullRegional = () => {
                     }
                     )
                     :  
-                    <div>
+                    <div key="query-buttons" className="query-buttons">
                         {queryButton}
                         {populateDetailsButton}
                         {orderSpeciesButton}

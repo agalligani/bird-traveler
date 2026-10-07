@@ -36,7 +36,6 @@ const SpeciesGrouping = () => {
                 finalFilteredGroups = filteredGroups.filter(
                     group => group.speciesList.length > 0
                 )
-                console.log(speciesDescriptions)
 
             dispatch(setFilteredSpeciesGrouping(finalFilteredGroups))
     }
