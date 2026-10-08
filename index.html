@@ -8,6 +8,12 @@
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
     <script type="module" src="/src/index.jsx"></script>
+    <script>
+      if (typeof browser === 'undefined') {
+        browser = chrome || {};
+      }
+    </script>
+
     <!-- This is a workaround for the "global is not defined" error 
      in React 18.3.1. It sets the global variable to the window object, 
      which is necessary for some libraries that rely on the global variable. --> 

@@ -2,14 +2,6 @@ import React, { useState, useEffect } from "react"
 import { Image } from "react-bootstrap"
 import { createFlickr } from "flickr-sdk"
 
-// const app = express()
-// app.use(cors({
-//   origin: 'http://localhost:5173/', // Replace with your frontend URL
-//   methods: ['GET', 'POST'],
-//   allowedHeaders: ['Content-Type'],
-// }))
-
-
 const BirdPhoto = ({comName}) => {
 
   const [photoData, setPhotoData] = useState([])
