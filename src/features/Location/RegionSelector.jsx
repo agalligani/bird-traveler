@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import "./styles.css"
 import "./Location.css"
 import 'reactjs-popup/dist/index.css'
-import { updateRegion, updateRegionalCountryList, updateLocation } from "./locationSlice"
+import { updateRegion, updateRegionalCountryList, updateLocation, updateLocationMessage } from "./locationSlice"
 import axios from 'axios'
 import config from "../../config"
 
@@ -11,23 +11,11 @@ import config from "../../config"
 const RegionSelector = () => {
   const [regionSelected, setRegionSelected ] = useState('na')
   const dispatch = useDispatch()
-  const regions = [
-    {name: 'Africa', id: "af"},
-    {name: 'Asia', id: "as"},
-    {name: 'Europe', id: "eu"},
-    {name: 'Central America', id: "ca"},
-    {name: 'North America', id: "na"},
-    {name: 'South America', id: "sa"},
-    {name: 'Antarctica', id: "aq"}
-  ]
     const {
+        regions,
         regionId,
-    } = useSelector( 
-        state => state.location
-    )
-
-    // const [locationSelected, setLocationSelected ] = useState(null)
-
+        locMessage
+    } = useSelector(state => state.location)
     
     useEffect(
       () => {
@@ -51,40 +39,39 @@ const RegionSelector = () => {
     const setRegionSelect = (e) => {
       setRegionSelected(e.target.value)
       dispatch(updateRegion(e.target.value))
-      // setRegionSelected(null)
     }
 
-    // const saveRegionSelect = (e) => {
-    //   dispatch(updateRegion(regionSelected))
-    //   setRegionSelected(null)
-    // }
-
     return (
-      <form id="location_select_form">
-        <h1>{regionId}</h1>
+      <form id="location_select_form" >
+        <h1 id="region_id">{regionId}</h1>
+        <h5 id="loc_message">{locMessage}</h5>
         <select id="locRegion" 
-          className="location_select" 
+          className="location_select visible"
             onChange={
-              (e) => {
+              (e) => {                
+                let region_id_h1 = document.getElementById('region_id')
+                let loc_message_h2 = document.getElementById('loc_message')
+                let locRegion_select = document.getElementById('locRegion')
+                region_id_h1.classList.remove('visible')
+                loc_message_h2.classList.remove('visible')
+                locRegion_select.classList.remove('visible')
+                region_id_h1.classList.add('fade_out')
+                // loc_message_h2.classList.add('fade_out')
+                locRegion_select.classList.add('fade_out')
                 setRegionSelect(e)
                 dispatch(updateLocation(e.target.value))
+                let regionName = regions.find(region => region.id === e.target.value);
+                dispatch(updateLocationMessage("Select the country or territory in " + regionName.name +" to search"))
               }} multiple>
              {
                regions.map(
                  (c,i) => 
-                  <option key={i} value={c.id}>
+                  <option key={c.name} value={c.id}>
                     {c.name}
                  </option>
                )
              }
            </select>
-
-          {/* {regionSelected ? (
-           <button className="close" onClick={() => saveRegionSelect()}>
-             Save Region
-           </button>
-           ) 
-         : ( <></>)} */}
       </form>
     )
 }

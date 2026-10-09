@@ -4,6 +4,7 @@ const initialState = {
     regionId: null,
     selectedRegion: null,
     countryId: "US",
+    countryName: "United States",
     regionalCountryList: [],
     subnational1List: [],
     subnational2List: [],
@@ -11,9 +12,16 @@ const initialState = {
     subRegion2Id: null,
     locId: "L3971768",
     locFavorites: [],
-    regions: [],
-    
-
+    locMessage: "Choose a region to start defining your birding list",
+    regions: [
+        {name: 'Africa', id: "af"},
+        {name: 'Asia', id: "as"},
+        {name: 'Europe', id: "eu"},
+        {name: 'Central America', id: "ca"},
+        {name: 'North America', id: "na"},
+        {name: 'South America', id: "sa"},
+        {name: 'Antarctica', id: "aq"}
+    ]
     // locId: "PE-MDD"
     // Sherri's place in CR
     // locId: "L3751192"
@@ -40,18 +48,30 @@ export const locationSlice = createSlice({
             state.countryId = action.payload
         },
 
+        updateCountryName(state, action) {
+            state.countryName = action.payload
+        },
+
+
         updateLocation(state, action) {
             state.locId = action.payload
         },
+
+        updateLocationMessage(state, action) {
+            state.locMessage = action.payload
+        },
+
     }
 })
 
 export const { 
     updateLocation,
+    updateLocationMessage,
     updateRegion,
     updateRegionalCountryList,
     updateSubnational1List,
     updateCountry,
+    updateCountryName,
 } = locationSlice.actions
 export default locationSlice.reducer
 

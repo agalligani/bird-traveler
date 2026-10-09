@@ -39,3 +39,8 @@
   [data-popup='tooltip'].my-popup-overlay {
     background: transparent;
   }
+  .fade_out{
+    opacity: 0;
+    height: 0;
+    display: none;
+  }

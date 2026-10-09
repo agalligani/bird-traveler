@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import "./styles.css"
 import "./Location.css"
 import 'reactjs-popup/dist/index.css'
-import { updateLocation, updateSubnational1List } from "./locationSlice"
+import { updateLocation, updateSubnational1List, updateLocationMessage } from "./locationSlice"
 import axios from "axios"
 import config from "../../config"
 
@@ -15,6 +15,7 @@ const LocationSelector = () => {
     const {
         locId,
         locFavorites,
+        countryName,
         countryId,
         subnational1List
     } = useSelector( 
@@ -28,9 +29,15 @@ const LocationSelector = () => {
       ${countryId}`
       axios(requestConfig)
       .then(res => res.data)
-      .then( data => {
+      .then(
+        data => {
+          if (data.length === 0) {
+          dispatch(updateLocationMessage("Create birdlist for " + countryName))
+            return;
+          } else {
+          // dispatch(updateLocationMessage("Select the province, state or county in " + countryName +" to search"))
           dispatch(updateSubnational1List(data))
-          })
+          }})
       .catch(function (error) {
       console.log(error)
       })

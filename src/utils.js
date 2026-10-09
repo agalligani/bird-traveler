@@ -7,3 +7,14 @@ export const chunkArray = (array, n) => {
         }
         return result
     }
+
+
+export const uniqByKeepLast = (data, key) => {
+        return [
+            ...new Map(
+                data.map( x => [key(x), x])
+            ).values()
+        ]
+    }
+
+
