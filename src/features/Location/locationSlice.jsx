@@ -13,6 +13,7 @@ const initialState = {
     locId: "L3971768",
     locFavorites: [],
     locMessage: "Choose a region to start defining your birding list",
+    
     regions: [
         {name: 'Africa', id: "af"},
         {name: 'Asia', id: "as"},

@@ -35,7 +35,6 @@ const LocationSelector = () => {
           dispatch(updateLocationMessage("Create birdlist for " + countryName))
             return;
           } else {
-          // dispatch(updateLocationMessage("Select the province, state or county in " + countryName +" to search"))
           dispatch(updateSubnational1List(data))
           }})
       .catch(function (error) {
