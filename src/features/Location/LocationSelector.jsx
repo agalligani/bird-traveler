@@ -8,18 +8,15 @@ import axios from "axios"
 import config from "../../config"
 
 const LocationSelector = () => {
-
   const [locationSelected, setLocationSelected ] = useState(null)
   const dispatch = useDispatch()
 
-    const {
-        locId,
-        locFavorites,
-        countryName,
-        countryId,
-        subnational1List
+  const {
+      countryName,
+      countryId,
+      subnational1List
     } = useSelector( 
-        state => state.location
+      state => state.location
     )
 
     useEffect(
@@ -32,7 +29,7 @@ const LocationSelector = () => {
       .then(
         data => {
           if (data.length === 0) {
-          dispatch(updateLocationMessage("Create birdlist for " + countryName))
+          // dispatch(updateLocationMessage("Create birdlist for " + countryName))
             return;
           } else {
           dispatch(updateSubnational1List(data))
@@ -60,18 +57,20 @@ const LocationSelector = () => {
               subnational1List.map(
                 (l,i) => {
                   return <option key={i} value={l.code}>{l.name}</option>
-              }
+                }
               )
               :
               <></>
             
           }
         </select>
-        {locationSelected ? ( 
-          <button className="close" onClick={() => saveLocationSelect()}>
-            Save Location
-          </button>
-          ) 
+        {locationSelected ? 
+          saveLocationSelect()
+        
+
+          // <button className="close" onClick={() => saveLocationSelect()}>
+          //   Save Location
+          // </button>
         : ( <></>)}
       </form>)
 }

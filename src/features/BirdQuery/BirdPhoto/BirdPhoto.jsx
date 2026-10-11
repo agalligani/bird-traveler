@@ -1,3 +1,10 @@
+/*
+ * BirdPhoto component
+ * Displays a photo of a bird based on species name or code.
+ * Currently uses a static image as a placeholder.
+ * Uncomment the Flickr request code to fetch actual photos from Flickr.
+ */
+
 import React, { useState, useEffect } from "react";
 import { createFlickr } from "flickr-sdk"
 import config from "../../../config.json"
@@ -13,9 +20,9 @@ const BirdPhoto = (props) => {
   const [photoData, setPhotoData] = useState({})
   useEffect(() => {
     if (props.speciesCode) {
-      requestPhotoFromState(props.speciesCode)
+      // requestPhotoFromState(props.speciesCode)
     } else {
-      requestPhotoFromFlickr(props.speciesName)
+      // requestPhotoFromFlickr(props.speciesName)
     }
   },[]);
 
@@ -40,7 +47,8 @@ const BirdPhoto = (props) => {
   if (props.speciesName && photoData != undefined) {
     return (
       <li key={"bird-photo-li-"+props.speciesName} className="image-item">
-        <img alt={photoData.title} src = {`https://live.staticflickr.com/${photoData.server}/${photoData.id}_${photoData.secret}_b.jpg`}/>
+        <img alt="stub" src="https://cdn.download.ams.birds.cornell.edu/api/v1/asset/45223631/2400"/>
+        {/* <img alt={photoData.title} src = {`https://live.staticflickr.com/${photoData.server}/${photoData.id}_${photoData.secret}_b.jpg`}/> */}
         <div className="overlay"><span>{props.speciesName}</span></div>
     </li>
 

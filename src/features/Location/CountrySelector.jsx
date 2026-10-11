@@ -1,6 +1,14 @@
+/* CountrySelector selects from "countries" within a region 
+  and populates the subnational1 list for the selected country,
+  where available and updates the location state accordingly.
+*/
 import { useSelector, useDispatch } from "react-redux"
 import { useState, useEffect } from "react"
-import { updateCountry, updateCountryName, updateSubnational1List, updateLocation, updateLocationMessage } from "./locationSlice"
+import { updateCountry, 
+  updateCountryName, 
+  updateSubnational1List, 
+  updateLocation, 
+  updateLocationMessage } from "./locationSlice"
 import { SouthAmericanCountryCodes } from "./countryCodes/countryCodes"
 import "./styles.css"
 import 'reactjs-popup/dist/index.css'

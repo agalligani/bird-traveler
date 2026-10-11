@@ -8,9 +8,14 @@ const initialState = {
     regionalCountryList: [],
     subnational1List: [],
     subnational2List: [],
+    subnational1Name: null,
+    subnational2Name: null,
+    hotSpotId: null,
+    hotSpotName: null,
+    hotSpots: [],
     subRegion1Id: null,
     subRegion2Id: null,
-    locId: "L3971768",
+    locId: "VN-75", // Vietnam location ID for Dong Nai
     locFavorites: [],
     locMessage: "Choose a region to start defining your birding list",
     
@@ -45,6 +50,10 @@ export const locationSlice = createSlice({
             state.subnational1List = action.payload
         },
 
+        updateSubnational2List(state, action) {
+            state.subnational2List = action.payload
+        },
+
         updateCountry(state, action) {
             state.countryId = action.payload
         },
@@ -62,6 +71,17 @@ export const locationSlice = createSlice({
             state.locMessage = action.payload
         },
 
+        updateSubnational1Name(state, action) {
+            state.subnational1Name = action.payload
+        },
+
+        updateSubnational2Name(state, action) {
+            state.subnational2Name = action.payload
+        },
+
+        updateHotSpots(state, action) {
+            state.hotSpots = action.payload
+        },
     }
 })
 
@@ -71,8 +91,14 @@ export const {
     updateRegion,
     updateRegionalCountryList,
     updateSubnational1List,
+    updateSubnational2List,
+    updateSubnational1Name,
+    updateSubnational2Name,
     updateCountry,
     updateCountryName,
+    updateHotSpots,
+    updateHotSpotId,
+    updateHotSpotName,
 } = locationSlice.actions
 export default locationSlice.reducer
 
