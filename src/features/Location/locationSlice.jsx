@@ -15,7 +15,7 @@ const initialState = {
     hotSpots: [],
     subRegion1Id: null,
     subRegion2Id: null,
-    locId: "VN-75", // Vietnam location ID for Dong Nai
+    locId: "VN-25", // Vietnam location ID for Dong Nai
     locFavorites: [],
     locMessage: "Choose a region to start defining your birding list",
     

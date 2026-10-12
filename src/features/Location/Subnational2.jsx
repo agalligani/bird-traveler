@@ -11,8 +11,9 @@
 /**
  * The eBird API currently supports subnational2 codes (such as 
  * counties or equivalent local administrative districts) for only 
- * three countries: United States, New Zealand, Mexico, Australia, Brazil
+ * India, United States, New Zealand, Mexico, Australia, Brazil
  * Argentina and Canada (that I know of imperically).
+ * Tested for China, Russia, and Colombia but not there.
  */
 
 import { useSelector, useDispatch } from "react-redux"

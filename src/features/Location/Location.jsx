@@ -4,6 +4,7 @@ import CountrySelector from "./CountrySelector"
 import LocationSelector from "./LocationSelector"
 import Subnational2 from "./Subnational2"
 import "./Location.css"
+import HotSpots from "./HotSpots"
 
 const Location = () => {
   
@@ -21,6 +22,7 @@ const Location = () => {
       <CountrySelector />
       <LocationSelector />
       <Subnational2 />
+      <HotSpots />
     </>
   )
 }

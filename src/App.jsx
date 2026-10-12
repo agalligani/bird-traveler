@@ -30,7 +30,7 @@ function App() {
       <div className="columns">
         <BirdQueryFullRegional />
         <footer className="col col-100 centered">
-          <h5>Copyright 2026 - All rights reserved</h5>
+            <p>Copyright 2026 - All rights reserved</p>
         </footer>
       </div>
     </div>

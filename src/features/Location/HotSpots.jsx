@@ -2,15 +2,15 @@ import { useSelector, useDispatch } from "react-redux"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { 
-  updateHotSpotsList,
+  updateHotSpots,
   updateSubnational2Name,
   updateLocation, 
   updateLocationMessage } from "./locationSlice"
 import "./styles.css"
 import config from "../../config"   
 
-const Hot = () => {
-
+const HotSpots = () => {
+    
     const dispatch = useDispatch()
     const { locId, HotSpots} = useSelector(
         (state) => state.location
@@ -18,7 +18,7 @@ const Hot = () => {
     useEffect(
       () => {
       let requestConfig = config.axiosConfig
-      requestConfig.url = `https://api.ebird.org/v2/ref/region/list/hotspots/${locId}`
+      requestConfig.url = `https://api.ebird.org/v2/ref/hotspot/${locId}?fmt=json`
       console.log("Requesting hotspots data for locId:", locId)
       axios(requestConfig)
       .then(res => res.data)
@@ -29,9 +29,8 @@ const Hot = () => {
           // dispatch(updateLocationMessage("Create birdlist for " + countryName))
             return;
           } else {
-                        console.log("# of hotspots found for locId:", locId, data.length)
-
-          dispatch(updateHotSpots(data))
+            console.log("# of hotspots found for locId:", locId, data)
+            dispatch(updateHotSpots(data))
           }})
       .catch(function (error) {
       console.log(error)
@@ -41,4 +40,3 @@ const Hot = () => {
 
 }
 export default HotSpots
-
