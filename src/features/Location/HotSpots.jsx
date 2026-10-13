@@ -6,13 +6,14 @@ import {
   updateSubnational2Name,
   updateLocation, 
   updateLocationMessage } from "./locationSlice"
+import HotSpotNavPills from "../../components/HotSpotNavPills"
 import "./styles.css"
-import config from "../../config"   
+import config from "../../config"
 
 const HotSpots = () => {
     
     const dispatch = useDispatch()
-    const { locId, HotSpots} = useSelector(
+    const { locId, hotSpots, countryCode} = useSelector(
         (state) => state.location
     )
     useEffect(
@@ -26,9 +27,8 @@ const HotSpots = () => {
         data => {
           if (data.length === 0) {
             console.log("No hotspots data found for locId:", locId)
-          // dispatch(updateLocationMessage("Create birdlist for " + countryName))
             return;
-          } else {
+          } else {            
             console.log("# of hotspots found for locId:", locId, data)
             dispatch(updateHotSpots(data))
           }})
@@ -38,5 +38,11 @@ const HotSpots = () => {
     }
     , [locId])
 
+    return (
+        <div>
+            <p>Hot Spots for Location ID: {countryCode}</p>
+               <HotSpotNavPills />
+        </div>
+    )
 }
 export default HotSpots

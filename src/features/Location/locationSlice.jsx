@@ -57,11 +57,10 @@ export const locationSlice = createSlice({
         updateCountry(state, action) {
             state.countryId = action.payload
         },
-
+        
         updateCountryName(state, action) {
             state.countryName = action.payload
         },
-
 
         updateLocation(state, action) {
             state.locId = action.payload

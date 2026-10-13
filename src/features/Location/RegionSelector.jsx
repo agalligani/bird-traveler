@@ -20,12 +20,22 @@ const RegionSelector = () => {
     useEffect(
       () => {
         let requestConfig = config.axiosConfig
+        /** Asian Trip Hack */
+        const asianTripHack = [
+          {code: "VN", name: "Vietnam" },
+          {code: "TH", name: "Thailand" },
+          {code: "TW", name: "Taiwan" },
+        ]
         if (regionId)  
           {
           requestConfig.url = `https://api.ebird.org/v2/ref/region/list/country/${regionId}`
           axios(requestConfig)
           .then(res => res.data)
           .then( data => {
+            console.log(data)
+            if (regionId === "as") {
+              data = [...asianTripHack]
+            }
             dispatch(updateRegionalCountryList(data))
             })
             .catch(function (error) {
@@ -48,7 +58,7 @@ const RegionSelector = () => {
         <select id="locRegion" 
           className="location_select visible"
             onChange={
-              (e) => {                
+              (e) => {
                 let region_id_h1 = document.getElementById('region_id')
                 let loc_message_h2 = document.getElementById('loc_message')
                 let locRegion_select = document.getElementById('locRegion')

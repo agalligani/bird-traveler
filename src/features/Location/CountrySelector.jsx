@@ -40,7 +40,7 @@ const CountrySelector = () => {
 
   return (
       <div>
-        <h4>{countryId}</h4>
+        {/* <h4>{countryId}</h4> */}
         <select id="countryList" className="location_select" multiple>
         {regionalCountryList.map(
           (c,i) => <option key={i} value={c.code} onClick={

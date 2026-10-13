@@ -93,15 +93,6 @@ const BirdQuery = () => {
         dispatch(normalizeHistoricList(uniqSpecies))
     }
 
-    //a nice utility function
-    const uniqByKeepLast = (data, key) => {
-        return [
-            ...new Map(
-                data.map( x => [key(x), x])
-            ).values()
-        ]
-    }
-
     const processSpeciesTaxonomy = (speciesList) => {
         if (speciesList.normalizedHistoricList[0] === undefined) {
             return(null)

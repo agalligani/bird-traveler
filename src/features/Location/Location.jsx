@@ -21,7 +21,7 @@ const Location = () => {
       <RegionSelector />
       <CountrySelector />
       <LocationSelector />
-      <Subnational2 />
+      {/* <Subnational2 /> */}
       <HotSpots />
     </>
   )

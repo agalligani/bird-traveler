@@ -16,13 +16,16 @@ const requestPhotoFromState = ( speciesCode ) => {
     return url
 }
 
+/*todo - check out wikipedia api for fetching bird photos */
+/* https://en.wikipedia.org/w/api.php?action=query&prop=pageimages|pageprops&format=json&piprop=thumbnail&titles=Great%20Hornbill&pithumbsize=300&redirects */
+
 const BirdPhoto = (props) => {
   const [photoData, setPhotoData] = useState({})
   useEffect(() => {
     if (props.speciesCode) {
-      // requestPhotoFromState(props.speciesCode)
+      requestPhotoFromState(props.speciesCode)
     } else {
-      // requestPhotoFromFlickr(props.speciesName)
+      requestPhotoFromFlickr(props.speciesName)
     }
   },[]);
 
@@ -47,8 +50,8 @@ const BirdPhoto = (props) => {
   if (props.speciesName && photoData != undefined) {
     return (
       <li key={"bird-photo-li-"+props.speciesName} className="image-item">
-        <img alt="stub" src="https://cdn.download.ams.birds.cornell.edu/api/v1/asset/45223631/2400"/>
-        {/* <img alt={photoData.title} src = {`https://live.staticflickr.com/${photoData.server}/${photoData.id}_${photoData.secret}_b.jpg`}/> */}
+        {/* <img alt="stub" src="https://cdn.download.ams.birds.cornell.edu/api/v1/asset/45223631/2400"/> */}
+        <img alt={photoData.title} src = {`https://live.staticflickr.com/${photoData.server}/${photoData.id}_${photoData.secret}_b.jpg`}/>
         <div className="overlay"><span>{props.speciesName}</span></div>
     </li>
 
