@@ -5,6 +5,7 @@
     "baseURL": "https://en.wikipedia.org/w/api.php",
     "params": {
       "format": "json",
+      "formatversion": 2,
       "origin": "*",
       "action": "query",
       "prop": "pageimages|pageprops",

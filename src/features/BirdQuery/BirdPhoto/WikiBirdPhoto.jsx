@@ -5,11 +5,10 @@
  * Uncomment the Flickr request code to fetch actual photos from Flickr.
  */
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import config from "../../../wikiConfig";
 import axios from "axios"
 import { writeToCache, readFromCache } from '../../../utils'
-
 
 const renderBirdPhoto = (speciesName, picUrl, width, height) => {
   return (
@@ -32,7 +31,7 @@ useEffect(
       requestConfig.params.titles = props.speciesName
       let cachedData = readFromCache("wiki-photo-" + props.speciesName);
       if (cachedData) {
-        console.log("Using cached data for species:", props.speciesName);
+        // console.log("Using cached data for species:", props.speciesName);
         setPhotoData(cachedData);
       } else {
         axios(requestConfig)
@@ -45,7 +44,7 @@ useEffect(
               height: page.thumbnail ? page.thumbnail.height : null,
               description: page.pageprops ? page.pageprops.description : null
             }));
-            console.log("Fetched data for species:", props.speciesName, data);
+            // console.log("Fetched data for species:", props.speciesName, data);
             setPhotoData(data);
             writeToCache("wiki-photo-" + props.speciesName, data);
             return data;
@@ -55,7 +54,6 @@ useEffect(
               // setPhotoData(res.photos.photo[0]);
               console.log("No data found for species:", props.speciesName);
             } else {
-              console.log("Data fetched for species:", props.speciesName, data);
             }
           })
           .catch(function (error) {
