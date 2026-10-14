@@ -3,22 +3,20 @@ import { useState, useEffect } from "react"
 import "./styles.css"
 import "./Location.css"
 import 'reactjs-popup/dist/index.css'
-import { updateLocation, updateSubnational1List } from "./locationSlice"
+import { updateLocation, updateSubnational1List, updateLocationMessage } from "./locationSlice"
 import axios from "axios"
 import config from "../../config"
 
 const LocationSelector = () => {
-
   const [locationSelected, setLocationSelected ] = useState(null)
   const dispatch = useDispatch()
 
-    const {
-        locId,
-        locFavorites,
-        countryId,
-        subnational1List
+  const {
+      countryName,
+      countryId,
+      subnational1List
     } = useSelector( 
-        state => state.location
+      state => state.location
     )
 
     useEffect(
@@ -28,9 +26,14 @@ const LocationSelector = () => {
       ${countryId}`
       axios(requestConfig)
       .then(res => res.data)
-      .then( data => {
+      .then(
+        data => {
+          if (data.length === 0) {
+          // dispatch(updateLocationMessage("Create birdlist for " + countryName))
+            return;
+          } else {
           dispatch(updateSubnational1List(data))
-          })
+          }})
       .catch(function (error) {
       console.log(error)
       })
@@ -54,18 +57,20 @@ const LocationSelector = () => {
               subnational1List.map(
                 (l,i) => {
                   return <option key={i} value={l.code}>{l.name}</option>
-              }
+                }
               )
               :
               <></>
             
           }
         </select>
-        {locationSelected ? ( 
-          <button className="close" onClick={() => saveLocationSelect()}>
-            Save Location
-          </button>
-          ) 
+        {locationSelected ? 
+          saveLocationSelect()
+        
+
+          // <button className="close" onClick={() => saveLocationSelect()}>
+          //   Save Location
+          // </button>
         : ( <></>)}
       </form>)
 }

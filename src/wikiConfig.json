@@ -1,0 +1,18 @@
+{
+  "axiosConfig": {
+    "method": "get",
+    "maxBodyLength": "Infinity",
+    "baseURL": "https://en.wikipedia.org/w/api.php",
+    "params": {
+      "format": "json",
+      "formatversion": 2,
+      "origin": "*",
+      "action": "query",
+      "prop": "pageimages|pageprops",
+      "piprop": "thumbnail",
+      "pithumbsize": 300,
+      "redirects": 1,
+      "titles": "Great Hornbill"
+    }
+  }
+}

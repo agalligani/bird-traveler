@@ -148,8 +148,8 @@ ul {
 
 .image-gallery li img {
   object-fit: cover;
-  width: 320px;
-  height: 230px;
+  /* width: 320px;
+  height: 230px; */
   vertical-align: middle;
   border-radius: 5px;
 }

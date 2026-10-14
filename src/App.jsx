@@ -29,8 +29,15 @@ function App() {
       <NavPills />
       <div className="columns">
         <BirdQueryFullRegional />
+        <button onClick={() => 
+        { 
+          const pageHTML = document.documentElement.outerHTML;
+          const m = pageHTML;
+          console.log("Page HTML:", m);
+        }
+          } id="topBtn" title="Go to top">Copy Page</button>
         <footer className="col col-100 centered">
-          <h5>Copyright 2026 - All rights reserved</h5>
+            <p>Copyright 2026 - All rights reserved</p>
         </footer>
       </div>
     </div>

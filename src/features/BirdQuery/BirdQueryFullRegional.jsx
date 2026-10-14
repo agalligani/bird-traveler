@@ -5,7 +5,8 @@ import {
         } from './birdQuerySlice'
 import "react-datepicker/dist/react-datepicker.css"
 import { useSelector, useDispatch } from 'react-redux'
-import BirdPhoto from './BirdPhoto/BirdPhoto'
+// import BirdPhoto from './BirdPhoto/BirdPhoto'
+import WikiBirdPhoto from './BirdPhoto/WikiBirdPhoto'
 import axios from 'axios'
 import config from "../../config"
 import {chunkArray} from '../../utils'
@@ -119,7 +120,8 @@ const BirdQueryFullRegional = () => {
                                 {n.speciesList.map( 
                                     (species,k) =>
                                     <a key={"image-link-"+i+"-"+k} className="image-link" href={`https://ebird.org/species/${species.speciesCode}\n`} target="_blank">
-                                        <BirdPhoto key={"bird-photo-"+i+"-"+k} speciesName={species.comName}/>
+                                        {/* <BirdPhoto key={"bird-photo-"+i+"-"+k} speciesName={species.comName}/> */}
+                                        <WikiBirdPhoto key={"bird-photo-"+i+"-"+k} speciesName={species.comName}/>
                                     </a>
                                 )}
                             </ul>

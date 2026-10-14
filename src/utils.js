@@ -1,4 +1,4 @@
-    /*** Chunk Array Into Bite-size Chunks ****/
+/*** Chunk Array Into Bite-size Chunks ****/
 
 export const chunkArray = (array, n) => {
         const result = []
@@ -7,3 +7,19 @@ export const chunkArray = (array, n) => {
         }
         return result
     }
+
+
+export const uniqByKeepLast = (data, key) => {
+        return [
+            ...new Map(
+                data.map( x => [key(x), x])
+            ).values()
+        ]
+    }
+
+export const writeToCache = (url, data) =>
+        localStorage.setItem(url, JSON.stringify(data))
+
+export const readFromCache = (url) => JSON.parse(localStorage.getItem(url)) || null
+  
+
