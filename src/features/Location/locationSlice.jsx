@@ -99,5 +99,6 @@ export const {
     updateHotSpotId,
     updateHotSpotName,
 } = locationSlice.actions
+
 export default locationSlice.reducer
 

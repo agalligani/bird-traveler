@@ -2,9 +2,10 @@ import { useSelector } from "react-redux"
 import RegionSelector from "./RegionSelector"
 import CountrySelector from "./CountrySelector"
 import LocationSelector from "./LocationSelector"
-import Subnational2 from "./Subnational2"
+import Subnational2 from "./Subnational2"       
 import "./Location.css"
 import HotSpots from "./HotSpots"
+import HtmlDocumentManager from "../Document/StoreDocument"
 
 const Location = () => {
   
@@ -23,6 +24,7 @@ const Location = () => {
       <LocationSelector />
       {/* <Subnational2 /> */}
       <HotSpots />
+      {/* <HtmlDocumentManager /> */}
     </>
   )
 }
