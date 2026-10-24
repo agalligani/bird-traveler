@@ -6,7 +6,8 @@ const initialState = {
     normalizedHistoricList: Array(0),
     speciesDescriptions: Array(0),
     groupedSpecies: Array(0),
-    queryDate: ""
+    queryDate: "",
+    sciName: null
 }
 export const birdQuerySlice = createSlice({
 
@@ -35,6 +36,9 @@ export const birdQuerySlice = createSlice({
         },
         updateGroupedSpecies: (state, action) => {
             state.groupedSpecies.push(action.payload)
+        },
+        updateSciName: (state, action) => {
+            state.sciName = action.payload
         }
     }
 })

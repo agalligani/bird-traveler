@@ -12,6 +12,9 @@ const LocationSelector = () => {
   const dispatch = useDispatch()
 
   const {
+      location,
+      locId,
+      locName,
       countryName,
       countryId,
       subnational1List
@@ -32,10 +35,10 @@ const LocationSelector = () => {
           // dispatch(updateLocationMessage("Create birdlist for " + countryName))
             return;
           } else {
-          dispatch(updateSubnational1List(data))
+            dispatch(updateSubnational1List(data))
           }})
       .catch(function (error) {
-      console.log(error)
+        console.log(error)
       })
     }
     , [countryId])
@@ -51,7 +54,12 @@ const LocationSelector = () => {
 
   return (
       <form id="locForm">
-        <select id="locSelect" className="locations_select" onChange={(e) => setLocationSelect(e)}>
+        <div className="location_name">{locName}:</div>
+        <select id="locSelect" className="locations_select" 
+          onChange={(e) => {
+              setLocationSelect(e)
+            }
+          }>
           {
             subnational1List ? 
               subnational1List.map(
@@ -65,13 +73,7 @@ const LocationSelector = () => {
           }
         </select>
         {locationSelected ? 
-          saveLocationSelect()
-        
-
-          // <button className="close" onClick={() => saveLocationSelect()}>
-          //   Save Location
-          // </button>
-        : ( <></>)}
+          saveLocationSelect() : ( <></>)}
       </form>)
 }
 export default LocationSelector

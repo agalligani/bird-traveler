@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import "./styles.css"
 import "./Location.css"
 import 'reactjs-popup/dist/index.css'
-import { updateRegion, updateRegionalCountryList, updateLocation, updateLocationMessage } from "./locationSlice"
+import { updateRegion, updateRegionalCountryList, updateLocation, updateLocationName, updateLocationMessage } from "./locationSlice"
 import axios from 'axios'
 import config from "../../config"
 
@@ -59,6 +59,7 @@ const RegionSelector = () => {
           className="location_select visible"
             onChange={
               (e) => {
+                //clean this shit up
                 let region_id_h1 = document.getElementById('region_id')
                 let loc_message_h2 = document.getElementById('loc_message')
                 let locRegion_select = document.getElementById('locRegion')

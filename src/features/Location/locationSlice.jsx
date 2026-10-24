@@ -15,7 +15,9 @@ const initialState = {
     hotSpots: [],
     subRegion1Id: null,
     subRegion2Id: null,
-    locId: "VN-25", // Vietnam location ID for Dong Nai
+    // locId: "VN-25", // Vietnam location ID for Dong Nai
+    locId: "L1086799", // Cuc Phuong National Park, Vietnam
+    locName: "Cuc Phuong National Park",
     locFavorites: [],
     locMessage: "Choose a region to start defining your birding list",
     
@@ -66,6 +68,11 @@ export const locationSlice = createSlice({
             state.locId = action.payload
         },
 
+        updateLocationName(state, action) {
+            state.locName = action.payload
+        },
+
+
         updateLocationMessage(state, action) {
             state.locMessage = action.payload
         },
@@ -85,6 +92,8 @@ export const locationSlice = createSlice({
 })
 
 export const { 
+    locId,
+    locName,
     updateLocation,
     updateLocationMessage,
     updateRegion,
@@ -95,6 +104,7 @@ export const {
     updateSubnational2Name,
     updateCountry,
     updateCountryName,
+    updateLocationName,
     updateHotSpots,
     updateHotSpotId,
     updateHotSpotName,

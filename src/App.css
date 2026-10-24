@@ -277,3 +277,42 @@ a {
 #topBtn:hover {
   background-color: #555;
 }
+
+#copyDocBtn {
+  /* display: none; */
+  position: fixed;
+  bottom: 20px;
+  right: 95px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: rgb(96, 8, 8);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+/* Modal styles */
+
+.modalOverlay {
+  position: fixed;
+  background-color: rgb(200, 200, 200, 0);
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.modalBox {
+  color: #ccc;
+  background-color: black;
+  opacity: 70%;
+  padding: 4.2rem;
+  width: 85%;
+}

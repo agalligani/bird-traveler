@@ -1,0 +1,188 @@
+    /* Reset & Base Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f9fa;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* nav pills */
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+ul.nav {
+  margin-top: 0;
+  box-sizing: border-box;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  position: sticky;
+  display: block;
+}
+
+.nav-link {
+  text-transform: uppercase;
+  font-size: .7rem;
+  font-weight: 900;
+  line-height: 1em;
+  letter-spacing: .1px;
+  color: #fff;
+  padding: 4px 6px 3px;
+  margin-right: 9px;
+  margin-bottom: 0.25rem;
+  /* background: #e44a18; */
+  background: #2255AA;
+  float: inline-start;
+}
+
+.nav-pills {
+  display: inline;
+}
+
+.nav-pills .nav-link, .nav-pills .menu-item>a {
+  padding: 0.5em 1em;
+  border-radius: 0.1rem;
+}
+
+a {
+  touch-action: manipulation;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* a.nav-link {
+  display: block; 
+} */
+
+.nav-pills:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+    /* Group Headings */
+    .group-heading {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 30px 0 15px 0;
+      padding-top: 40px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      color: #2d3748;
+    }
+
+    /* Gallery Grid Setup */
+    .image-gallery {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    /* location name */
+
+    div#locName {
+      position: -webkit-sticky; /* Required for older Safari browser support */
+      position: sticky;
+      top: 0;                   /* Stays fixed exactly at the top of the viewport */
+      z-index: 100;  
+      width: 100%;
+      text-align:center;
+      font-size: 20px;
+      font-weight: 500;
+      color: white;
+      background-color: black;
+    }
+
+    /* Hide the raw species code text safely */
+    .image-gallery li > div {
+      display: none;
+    }
+
+    /* Interactive Card Wrapper */
+    .image-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    /* Gallery Item Card */
+    .image-item {
+      list-style: none; /* Removes bullet if nested incorrectly */
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      aspect-ratio: 4 / 3;
+    }
+
+    .image-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Image Scaling */
+    .image-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Text Overlay Styling */
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0;
+      padding: 25px 15px 15px 15px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+      color: #fff;
+    }
+
+    .overlay span {
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+#topBtn {
+  /* display: none; */
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: rgb(96, 8, 8);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#topBtn:hover {
+  background-color: #555;
+}

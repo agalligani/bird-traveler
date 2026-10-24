@@ -4,6 +4,7 @@ import { upDateMasterHistoricList,
         normalizeHistoricList,
         setSpeciesDescriptions,
         } from './birdQuerySlice'
+import {locId, locName} from '../Location/locationSlice'    
 import "react-datepicker/dist/react-datepicker.css"
 import { useSelector, useDispatch } from 'react-redux'
 import BirdPhoto from './BirdPhoto/BirdPhoto'
@@ -124,7 +125,7 @@ const BirdQuery = () => {
     const queryButton = {masterHistoricList}.length || 
         <button onClick={ 
             () => processDateRangeRequests({startDate}.startDate,{endDate}.endDate, 15)}>
-                Run Query
+                Run Query for {locName}
         </button>
     const dedupButton = {masterHistoricList}.length || 
     <button onClick={() => dedupeMasterList()}>

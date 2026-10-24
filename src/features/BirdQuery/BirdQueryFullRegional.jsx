@@ -3,15 +3,20 @@ import {
     setSpeciesDescriptions,
     updateGroupedSpecies
         } from './birdQuerySlice'
+import {
+    locId,
+    locName
+        } from '../Location/locationSlice'
+
 import "react-datepicker/dist/react-datepicker.css"
 import { useSelector, useDispatch } from 'react-redux'
 // import BirdPhoto from './BirdPhoto/BirdPhoto'
-import WikiBirdPhoto from './BirdPhoto/WikiBirdPhoto'
+import BirdPhoto from './BirdPhoto/BirdPhoto'
 import axios from 'axios'
 import config from "../../config"
 import {chunkArray} from '../../utils'
-// import ImageGallery from '../../components/ImageGallery'
 
+// import ImageGallery from '../../components/ImageGallery'
 const BirdQueryFullRegional = () => {
     const dispatch = useDispatch()
     const {
@@ -22,6 +27,7 @@ const BirdQueryFullRegional = () => {
 
     const {
         locId,
+        locName
     } = useSelector( (state) => state.location)
 
     const {
@@ -33,6 +39,9 @@ const BirdQueryFullRegional = () => {
         const url = `https://api.ebird.org/v2/product/spplist/${locId}\n`
         requestConfig.url = url
         axios(requestConfig).then(
+            //@todo add thunk function to handle this dispatch and automatically dispatch remaining
+            // tewo functions
+            // async res => {result = await dispatch(updateRegionalSpeciesList(res.data)).unwrap()
             res => dispatch(updateRegionalSpeciesList(res.data))
         ).catch((error) => {
             console.log(error.message)
@@ -41,10 +50,7 @@ const BirdQueryFullRegional = () => {
     }
 
     const populateSpeciesDetails = (speciesList) => {
-            console.log("processSpeciesTaxonomy")
-            console.log(speciesList)
             let chunkedSpeciesList = chunkArray(speciesList.regionalSpeciesList, 30)
-            console.log(chunkedSpeciesList)
             chunkedSpeciesList.forEach(
                 (chunk, i) => {
                     const taxonConfig = config.axiosConfig
@@ -67,7 +73,6 @@ const BirdQueryFullRegional = () => {
         var filteredGroups = []
         var speciesList = []
         var finalFilteredGroups = []
-        console.log(speciesGrouping[0])
         speciesGrouping[0].forEach(
             n => {
             speciesList  = speciesDescriptions.filter(
@@ -91,7 +96,7 @@ const BirdQueryFullRegional = () => {
 
     const queryButton = {regionalSpeciesList}.length || 
         <button onClick={() => speciesListForARegion()}>
-            Run Query
+            Run Query for {locName} ({locName})
         </button>
 
     const populateDetailsButton = {regionalSpeciesList}.length || 
@@ -106,7 +111,9 @@ const BirdQueryFullRegional = () => {
         
   return (
         <>
-            <div className="col-middle-box">
+            <div className="col-middle-box" id="bird-query-full-regional">
+            <div id="locName" className="location_name">{locName}:</div>
+
             { groupedSpecies.length ? 
                 groupedSpecies.map(
                     fgroups => { 
@@ -117,12 +124,15 @@ const BirdQueryFullRegional = () => {
                                 {n.groupName}
                             </div>
                             <ul key={"image-gallery"+i} className="image-gallery">
-                                {n.speciesList.map( 
+                                {n.speciesList.map(
                                     (species,k) =>
+                                    <li key={k}>
+                                    <div>speciesCode: {species.speciesCode}</div>
                                     <a key={"image-link-"+i+"-"+k} className="image-link" href={`https://ebird.org/species/${species.speciesCode}\n`} target="_blank">
                                         {/* <BirdPhoto key={"bird-photo-"+i+"-"+k} speciesName={species.comName}/> */}
-                                        <WikiBirdPhoto key={"bird-photo-"+i+"-"+k} speciesName={species.comName}/>
+                                        <BirdPhoto key={"bird-photo-"+i+"-"+k} speciesName={species.comName} speciesCode={species.speciesCode}/>
                                     </a>
+                                    </li>
                                 )}
                             </ul>
                             </>

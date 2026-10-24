@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
-    documentType: "birdlist",
-    documentDirectory: null,
-    documentFilename: null,
-    documentTitle: null,
-    documentBody: null,
-    documentCreated: null,
-    documentSaved: null,
-    documentAltered: null,
-    documentMode: "view",
+    docType: "birdlist",
+    docDirectory: "~/Documents",
+    docInlineStyle: "default",
+    docFilename: "birdlist.html",
+    docTitle: "My Bird List",
+    docBody: "<!DOCTYPE html><html><head><title>My Bird List</title></head><body></body></html>",
+    docCreated: null,
+    docIsSaved: false,
+    docuIsAltered: false,
+    docMode: "view",
+    createdDocument: false
 }
 
 export const documentSlice = createSlice({
@@ -16,31 +19,33 @@ export const documentSlice = createSlice({
     initialState: initialState,
     reducers: {
         updateDocumentType(state, action) {
-            state.documentType = action.payload
+            state.docType = action.payload
         },
         updateDocumentDirectory(state, action) {
-            state.documentDirectory = action.payload
+            state.docDirectory = action.payload
         },
         updateDocumentFilename(state, action) {
-            state.documentFilename = action.payload
+            state.docFilename = action.payload
         },
         updateDocumentCreated(state, action) {
-            state.documentCreated = action.payload
+            state.docCreated = action.payload
         },
         updateDocumentSaved(state, action) {
-            state.documentSaved = action.payload
+            state.docIsSaved = action.payload
         },
         updateDocumentAltered(state, action) {
-            state.documentAltered = action.payload
+            state.docuIsAltered = action.payload
         },
         updateDocumentTitle(state, action) {
-            state.documentTitle = action.payload
+            state.docTitle = action.payload
         },
         updateDocumentBody(state, action) {
-            state.documentBody = action.payload
-        }
-    }   
-})
+            state.docBody = action.payload
+        },
+        setCreateDocument(state, action) {
+            state.createdDocument = action.payload
+    }, 
+}})
 
 export const {
     updateDocumentType,
@@ -50,7 +55,8 @@ export const {
     updateDocumentSaved,
     updateDocumentAltered,
     updateDocumentTitle,
-    updateDocumentBody
+    updateDocumentBody,
+    setCreateDocument
 } = documentSlice.actions
 
 export default documentSlice.reducer

@@ -1,23 +1,13 @@
+/******** */
+/*** !!!!!!!! --- THIS FILE IS NOT USED --- !!!!!!!!!     */
+/*** It is just an example of how to store a doc in REACT */
+
 import React, { useState } from "react";
 
 export default function HtmlDocumentManager() {
   // 1. Store the HTML document string in React state
   const [htmlContent, setHtmlContent] = useState(`
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>My Generated Document</title>
-      <style>
-        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f4; }
-        h1 { color: #333; }
-      </style>
-    </head>
-    <body>
-      <h1>Hello World!</h1>
-      <p>This HTML document was created entirely in React.</p>
-    </body>
-    </html>
+    <!DOCTYPE html></html>
   `);
 
   // 2. Function to trigger a local download/storage of the HTML file
