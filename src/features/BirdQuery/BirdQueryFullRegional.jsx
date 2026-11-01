@@ -10,8 +10,7 @@ import {
 
 import "react-datepicker/dist/react-datepicker.css"
 import { useSelector, useDispatch } from 'react-redux'
-// import BirdPhoto from './BirdPhoto/BirdPhoto'
-import BirdPhoto from './BirdPhoto/BirdPhoto'
+import { BirdPhoto, extractBirdPhoto } from './BirdPhoto/BirdPhoto'
 import axios from 'axios'
 import config from "../../config"
 import {chunkArray} from '../../utils'
@@ -49,15 +48,20 @@ const BirdQueryFullRegional = () => {
         )
     }
 
+    /** Creates an array of species with their taxonomy number for sorting */
     const populateSpeciesDetails = (speciesList) => {
             let chunkedSpeciesList = chunkArray(speciesList.regionalSpeciesList, 30)
             chunkedSpeciesList.forEach(
                 (chunk, i) => {
+                    /** update species taxonomy */
                     const taxonConfig = config.axiosConfig
                     taxonConfig.url = `https://api.ebird.org/v2/ref/taxonomy/ebird?species=${chunk.join(",")}&fmt=json`
                     axios(taxonConfig).then( (res) => {
                         res.data.forEach(
                             (species, j) => {
+                                const birdPhoto = extractBirdPhoto(species.speciesName, species.speciesCode)
+                                console.log(birdPhoto)
+                                species.photoURL = birdPhoto.url
                                 dispatch(setSpeciesDescriptions(species))
                             }
                         )
@@ -69,6 +73,8 @@ const BirdQueryFullRegional = () => {
         }
 
     /*** GROUP SPECIES ****/
+    /** @TODO check if this code is duplicated in ../speciesgroup */
+    /** sorts species into taxonomy buckets */
     const orderSpeciesByGrouping = () => {
         var filteredGroups = []
         var speciesList = []
@@ -113,7 +119,6 @@ const BirdQueryFullRegional = () => {
         <>
             <div className="col-middle-box" id="bird-query-full-regional">
             <div id="locName" className="location_name">{locName}:</div>
-
             { groupedSpecies.length ? 
                 groupedSpecies.map(
                     fgroups => { 
@@ -128,10 +133,14 @@ const BirdQueryFullRegional = () => {
                                     (species,k) =>
                                     <li key={k}>
                                     <div>speciesCode: {species.speciesCode}</div>
-                                    <a key={"image-link-"+i+"-"+k} className="image-link" href={`https://ebird.org/species/${species.speciesCode}\n`} target="_blank">
-                                        {/* <BirdPhoto key={"bird-photo-"+i+"-"+k} speciesName={species.comName}/> */}
-                                        <BirdPhoto key={"bird-photo-"+i+"-"+k} speciesName={species.comName} speciesCode={species.speciesCode}/>
-                                    </a>
+                                    <div key={"image-link-"+i+"-"+k} className="image-link" 
+                                    onClick={(e) => {
+                                        let birdUrl=`https://ebird.org/species/${species.speciesCode}\n`
+                                        window.open(birdUrl, "_blank")
+                                    }}
+                                    href={`https://ebird.org/species/${species.speciesCode}\n`} target="_blank">
+                                        <img src={species.photoURL}/>
+                                    </div>
                                     </li>
                                 )}
                             </ul>

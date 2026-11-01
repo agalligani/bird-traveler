@@ -21,7 +21,7 @@ const HotSpots = () => {
       () => {
       let requestConfig = config.axiosConfig
       requestConfig.url = `https://api.ebird.org/v2/ref/hotspot/${locId}?fmt=json`
-      console.log("Requesting hotspots data for locId:", locId)
+
       axios(requestConfig)
       .then(res => res.data)
       .then(

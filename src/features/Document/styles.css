@@ -1,5 +1,9 @@
-    /* Reset & Base Styles */
-    body {
+/** this file is imported and injected as inline text **/
+/** into the downloaded documents                     **/
+/** Needs to be restyled at some point                **/
+
+/* Reset & Base Styles */
+body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f7f9fa;
       color: #333;

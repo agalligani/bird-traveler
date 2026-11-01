@@ -11,7 +11,9 @@ const initialState = {
     docIsSaved: false,
     docuIsAltered: false,
     docMode: "view",
-    createdDocument: false
+    createdDocument: false,
+    /** @TODO make modals their own feature */
+    modalState: false
 }
 
 export const documentSlice = createSlice({
@@ -44,7 +46,10 @@ export const documentSlice = createSlice({
         },
         setCreateDocument(state, action) {
             state.createdDocument = action.payload
-    }, 
+        },
+        setModalState(state, action) {
+            state.modalState = action.payload
+        },
 }})
 
 export const {
@@ -56,7 +61,8 @@ export const {
     updateDocumentAltered,
     updateDocumentTitle,
     updateDocumentBody,
-    setCreateDocument
+    setCreateDocument,
+    setModalState,
 } = documentSlice.actions
 
 export default documentSlice.reducer

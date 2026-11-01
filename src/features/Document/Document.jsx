@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { PersistentSaver } from "./HandleSaveFile"
 import rawStyles from './styles.css?inline'
 
 import {
@@ -57,9 +58,7 @@ const Document = () => {
     (state) => state.document
   )
 
-  const [modalState, setModelState] = useState(false);
-
-  
+  const [modalState, setModelState] = useState(false);  
   const [htmlContent, setHtmlContent] = useState()
   const handleSaveToFile = (content) => {
     const blob = new Blob([content], { type: "text/html" });
@@ -79,7 +78,6 @@ const Document = () => {
       <pre>{htmlContent}</pre>
         <button id="copyDocBtn" onClick={() =>{
           setModelState(true)
-          // return("")
           const birdQueryHTML = "<!DOCTYPE html>\n" + "<style>\n" + rawStyles + "\n</style>\n"
               +"\n<ul class=\"nav nav-pills\">"+document.getElementById("nav-pills").innerHTML + "\n</ul>\n"
               + document.getElementById("bird-query-full-regional").innerHTML + 
@@ -91,8 +89,7 @@ const Document = () => {
           setHtmlContent(birdQueryHTML)
         handleSaveToFile(birdQueryHTML)
         }}>Doc Save</button>
-        <FileModal />
-    </>
+        <PersistentSaver />    </>
   )
 }
 

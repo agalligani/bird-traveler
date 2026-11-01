@@ -1,3 +1,5 @@
+/*** Currently not used  */
+
 import DatePicker  from 'react-datepicker'
 import {useState, useEffect} from "react"
 import { upDateMasterHistoricList,
@@ -166,7 +168,6 @@ const BirdQuery = () => {
                             <div className="col-middle-box" key={`${n.groupOrder}-${k}`}>
                                 {k}-{species.comName}
                                 <BirdPhoto 
-                                // speciesCode=
                                 speciesName={species.comName}
                                 />
                             </div>

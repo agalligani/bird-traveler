@@ -1,5 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setFilteredSpeciesGrouping } from "./speciesGroupingSlice"
+
+/**
+ * Fetches user profile data from the API.
+ * 
+ * @todo Replace api call with hardcoded or cached species grouping.
+ */
+
 const SpeciesGrouping = () => {
 
     const dispatch = useDispatch()
